@@ -73,9 +73,15 @@
                 </div>
 
                 <div id="cash-section" class="cash-section">
-                    <label for="cash-received">Dinero Recibido ($):</label>
+                    <label for="cash-received">Efectivo Recibido ($):</label>
+                    <div class="quick-cash-buttons">
+                        <button class="btn-quick-cash" data-amount="exact">Exacto</button>
+                        <button class="btn-quick-cash" data-amount="5">$5</button>
+                        <button class="btn-quick-cash" data-amount="10">$10</button>
+                        <button class="btn-quick-cash" data-amount="20">$20</button>
+                    </div>
                     <div class="keyboard-input">
-                        <input type="number" id="cash-received" placeholder="0.00" step="0.50">
+                        <input type="number" id="cash-received" placeholder="Monto manual..." step="0.50">
                     </div>
                     <div class="change-display">
                         <span>Cambio:</span>
@@ -95,6 +101,9 @@
         <div class="modal-content">
             <h2>Resumen del Día</h2>
             <div class="modal-body" id="print-area">
+                <p id="close-register-datetime"
+                    style="text-align:center; color: var(--text-muted); margin-top:-10px; margin-bottom: 20px; font-weight: 500;">
+                </p>
                 <div class="summary-stats">
                     <div class="stat-box">
                         <span class="stat-label">Ventas Totales</span>
@@ -117,7 +126,71 @@
             </div>
         </div>
     </div>
+    <!-- Plantilla oculta para el Ticket de Compra -->
+    <div id="receipt-template" class="receipt-hidden">
+        <div class="receipt-header">
+            <h2>L A &nbsp;&nbsp;P A R R I L L A<br>D E L &nbsp;&nbsp;E S T E</h2>
+            <p>RUC: 1234567-8-90<br>Panamá, Juan Díaz</p>
+            <p>================================</p>
+            <p>TICKET DE VENTA</p>
+            <p>Orden #: <strong id="receipt-order-no" style="font-size: 16px;"></strong></p>
+            <p id="receipt-date"></p>
+            <p>================================</p>
+        </div>
 
+        <table class="receipt-items">
+            <thead>
+                <tr>
+                    <th style="text-align:left">Cant</th>
+                    <th style="text-align:left">Desc</th>
+                    <th style="text-align:right">Total</th>
+                </tr>
+            </thead>
+            <tbody id="receipt-items-list">
+                <!-- Se llena con JS -->
+            </tbody>
+        </table>
+
+        <div class="receipt-totals">
+            <p>================================</p>
+            <p><strong>TOTAL: <span id="receipt-total-amount"></span></strong></p>
+            <p>Método: <span id="receipt-method"></span></p>
+            <p>Recibido: <span id="receipt-cash"></span></p>
+            <p>Cambio: <span id="receipt-change"></span></p>
+            <p>================================</p>
+        </div>
+
+        <div class="receipt-footer">
+            <p>¡Gracias por su compra!</p>
+            <p>Vuelva pronto</p>
+        </div>
+    </div>
+
+    <!-- Modal Confirmación Reinicio -->
+    <div id="verify-reset-modal" class="modal hidden">
+        <div class="modal-content" style="max-width: 400px; text-align: center;">
+            <h2 style="color: var(--danger); margin-bottom: 10px;">⚠️ Atención</h2>
+            <div class="modal-body">
+                <p>Estás a punto de borrar todas las ventas del día. Esta acción <strong>no se puede deshacer</strong>.
+                </p>
+                <p style="margin-top: 15px; font-weight: bold;">¿Estás completamente seguro?</p>
+            </div>
+            <div class="modal-footer" style="justify-content: center; gap: 15px; margin-top: 20px;">
+                <button id="btn-cancel-reset" class="btn-outline">Cancelar</button>
+                <button id="btn-confirm-reset-strict" class="btn-danger">Sí, Reiniciar Caja</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenedor para notificaciones Toast -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="js/ui.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/order.js"></script>
+    <script src="js/receipt.js"></script>
+    <script src="js/checkout.js"></script>
+    <script src="js/register.js"></script>
     <script src="js/script.js"></script>
 </body>
 

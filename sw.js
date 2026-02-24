@@ -1,8 +1,14 @@
-const CACHE_NAME = 'parripos-v2';
+const CACHE_NAME = 'parripos-v4';
 const ASSETS = [
     './',
     './index.html',
     './css/styles.css',
+    './js/ui.js',
+    './js/products.js',
+    './js/order.js',
+    './js/receipt.js',
+    './js/checkout.js',
+    './js/register.js',
     './js/script.js',
     './manifest.json',
     './assets/icons/icon.svg'
