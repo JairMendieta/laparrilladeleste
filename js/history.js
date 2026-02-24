@@ -8,17 +8,19 @@ function renderHistory() {
     const sales = JSON.parse(localStorage.getItem('parriPOS_sales') || '[]');
     const tbody = document.getElementById('history-items-list');
     const emptyState = document.getElementById('history-empty-state');
-    const table = document.getElementById('history-table');
 
-    if (!tbody || !emptyState || !table) return;
+    // El div contenedor blanco con el borde que envuelve a la tabla
+    const tableContainer = document.getElementById('history-table').closest('div').parentElement;
+
+    if (!tbody || !emptyState || !tableContainer) return;
 
     tbody.innerHTML = '';
 
     if (sales.length === 0) {
-        table.classList.add('hidden');
+        tableContainer.classList.add('hidden');
         emptyState.classList.remove('hidden');
     } else {
-        table.classList.remove('hidden');
+        tableContainer.classList.remove('hidden');
         emptyState.classList.add('hidden');
 
         // Renderizar las ventas más recientes primero
