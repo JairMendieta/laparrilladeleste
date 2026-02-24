@@ -1,0 +1,17 @@
+{
+  "name": "ParriPOS",
+  "short_name": "ParriPOS",
+  "description": "Sistema POS para Parrillada",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#121212",
+  "theme_color": "#1a1a1a",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "assets/icons/icon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml"
+    }
+  ]
+}

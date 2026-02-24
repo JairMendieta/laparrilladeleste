@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ParriPOS</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#f4f4f6">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="ParriPOS">
+    <link rel="apple-touch-icon" href="assets/icons/icon.svg">
+</head>
+
+<body>
+    <div class="pos-container">
+        <!-- Columna Izquierda: Productos -->
+        <main class="products-section">
+            <header>
+                <div class="header-title">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round" style="color: var(--acc-orange)">
+                        <path d="M5 21h14"></path>
+                        <path d="M6 17h12"></path>
+                        <path d="M7 13h10"></path>
+                        <path d="M12 2v11"></path>
+                        <path d="M8 5v8"></path>
+                        <path d="M16 5v8"></path>
+                    </svg>
+                    <h1>ParriPOS</h1>
+                </div>
+                <div class="header-actions">
+                    <button id="btn-cerrar-caja" class="btn-outline">Cerrar Caja</button>
+                </div>
+            </header>
+            <div id="products-grid" class="products-grid">
+                <!-- Productos generados dinámicamente -->
+            </div>
+        </main>
+
+        <!-- Columna Derecha: Pedido -->
+        <aside class="order-section">
+            <h2>Pedido Actual</h2>
+            <div id="order-list" class="order-list">
+                <!-- Items del pedido -->
+            </div>
+            <div class="order-summary">
+                <div class="total-row">
+                    <span>Total:</span>
+                    <span id="order-total">$0.00</span>
+                </div>
+                <button id="btn-checkout" class="btn-primary" disabled>Finalizar Venta</button>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Modal Finalizar Venta -->
+    <div id="checkout-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2>Finalizar Venta</h2>
+            <div class="modal-body">
+                <div class="checkout-total">
+                    <span>Total a Cobrar:</span>
+                    <span id="checkout-total-amount">$0.00</span>
+                </div>
+
+                <div class="payment-methods">
+                    <button class="payment-btn active" data-method="Efectivo">Efectivo</button>
+                    <button class="payment-btn" data-method="Yappy">Yappy</button>
+                    <button class="payment-btn" data-method="Tarjeta">Tarjeta</button>
+                </div>
+
+                <div id="cash-section" class="cash-section">
+                    <label for="cash-received">Dinero Recibido ($):</label>
+                    <div class="keyboard-input">
+                        <input type="number" id="cash-received" placeholder="0.00" step="0.50">
+                    </div>
+                    <div class="change-display">
+                        <span>Cambio:</span>
+                        <span id="change-amount">$0.00</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btn-cancel-checkout" class="btn-outline">Cancelar</button>
+                <button id="btn-confirm-sale" class="btn-primary">Confirmar Venta</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Cerrar Caja -->
+    <div id="close-register-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2>Resumen del Día</h2>
+            <div class="modal-body" id="print-area">
+                <div class="summary-stats">
+                    <div class="stat-box">
+                        <span class="stat-label">Ventas Totales</span>
+                        <span class="stat-value" id="summary-count">0</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-label">Ingresos Totales</span>
+                        <span class="stat-value" id="summary-total">$0.00</span>
+                    </div>
+                </div>
+                <div class="summary-methods">
+                    <h3>Por Método de Pago</h3>
+                    <ul id="summary-methods-list"></ul>
+                </div>
+            </div>
+            <div class="modal-footer no-print">
+                <button id="btn-close-summary" class="btn-outline">Cerrar</button>
+                <button id="btn-export-pdf" class="btn-primary">Imprimir / PDF</button>
+                <button id="btn-reset-register" class="btn-danger">Reiniciar Caja</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
