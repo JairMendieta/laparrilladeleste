@@ -80,8 +80,8 @@ function confirmSale() {
     updateOrderDisplay();
     closeCheckout();
 
-    // Trigger Print
-    triggerPrintReceipt(sale);
+    // Interceptar flujo de Impresión con Opciones
+    openReceiptOptions(sale);
 
     // Feedback visual opcional
     const origText = domNodes.btnCheckout.textContent;

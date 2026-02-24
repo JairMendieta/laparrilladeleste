@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Historial de Ventas | ParriPOS</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#f4f4f6">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+</head>
+
+<body>
+    <div class="pos-container" style="grid-template-columns: 1fr;">
+        <main class="products-section" style="display: flex; flex-direction: column; height: 100vh;">
+            <header>
+                <div class="header-title">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round" style="color: var(--acc-orange)">
+                        <path d="M5 21h14"></path>
+                        <path d="M6 17h12"></path>
+                        <path d="M7 13h10"></path>
+                        <path d="M12 2v11"></path>
+                        <path d="M8 5v8"></path>
+                        <path d="M16 5v8"></path>
+                    </svg>
+                    <h1>ParriPOS <span style="font-weight: 300; opacity: 0.7;">| Historial</span></h1>
+                </div>
+                <div class="header-actions">
+                    <button onclick="window.location.href='index.html'" class="btn-outline">⬅ Volver al Cajero</button>
+                </div>
+            </header>
+
+            <div style="flex: 1; overflow-y: auto; padding: 20px;">
+                <div
+                    style="background: white; border-radius: 12px; border: 1px solid var(--border-color); overflow: hidden;">
+                    <div style="overflow-x: auto;">
+                        <table class="receipt-items" id="history-table"
+                            style="width: 100%; text-align: left; border-collapse: collapse;">
+                            <thead style="background-color: var(--bg-hover);">
+                                <tr style="border-bottom: 2px solid var(--border-color);">
+                                    <th style="padding: 16px 20px; color: var(--text-muted); font-weight: 600;">Orden
+                                    </th>
+                                    <th style="padding: 16px 20px; color: var(--text-muted); font-weight: 600;">Hora
+                                    </th>
+                                    <th
+                                        style="padding: 16px 20px; text-align: right; color: var(--text-muted); font-weight: 600;">
+                                        Total</th>
+                                    <th style="padding: 16px 20px; color: var(--text-muted); font-weight: 600;">Método
+                                    </th>
+                                    <th style="padding: 16px 20px; color: var(--text-muted); font-weight: 600;">Detalle
+                                        de Productos</th>
+                                </tr>
+                            </thead>
+                            <tbody id="history-items-list">
+                                <!-- Llenado dinámicamente vía JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="history-empty-state" class="hidden"
+                    style="text-align: center; color: var(--text-muted); padding: 60px 20px; border: 2px dashed var(--border-color); border-radius: 12px; margin-top: 20px; background: white;">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.5; margin-bottom: 15px;">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                    <p style="font-size: 1.2em; font-weight: 500; margin: 0;">No hay ventas registradas aún el día de
+                        hoy.</p>
+                    <p style="font-size: 0.9em; margin-top: 5px;">Las ventas aparecerán aquí una vez finalices pedidos
+                        desde el cajero.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Contenedor para notificaciones Toast -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="js/ui.js"></script>
+    <script src="js/history.js"></script>
+</body>
+
+</html>

@@ -10,6 +10,7 @@ const domNodes = {
     checkoutModal: document.getElementById('checkout-modal'),
     closeRegisterModal: document.getElementById('close-register-modal'),
     verifyResetModal: document.getElementById('verify-reset-modal'),
+    printOptionsModal: document.getElementById('print-options-modal'),
 
     // Checkout Elements
     checkoutTotalAmount: document.getElementById('checkout-total-amount'),
@@ -28,6 +29,11 @@ const domNodes = {
     btnResetRegister: document.getElementById('btn-reset-register'),
     btnCancelReset: document.getElementById('btn-cancel-reset'),
     btnConfirmResetStrict: document.getElementById('btn-confirm-reset-strict'),
+
+    // Opciones de Recibo
+    optionsOrderNo: document.getElementById('options-order-no'),
+    btnActionPrint: document.getElementById('btn-action-print'),
+    btnActionSkip: document.getElementById('btn-action-skip'),
 
     // Resumen
     summaryCount: document.getElementById('summary-count'),
@@ -95,11 +101,6 @@ function setupEventListeners() {
     domNodes.btnCerrarCaja.addEventListener('click', openCloseRegister);
     domNodes.btnCloseSummary.addEventListener('click', () => {
         domNodes.closeRegisterModal.classList.add('hidden');
-    });
-
-    // Imprimir PDF
-    domNodes.btnExportPdf.addEventListener('click', () => {
-        window.print();
     });
 
     // Reiniciar Caja (Abre Modal de Confirmación)

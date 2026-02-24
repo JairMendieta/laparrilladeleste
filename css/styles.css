@@ -689,6 +689,43 @@ body {
     }
 }
 
+/* --------- Estilos Globales de Recibo (Aplican a Print y a PDF) --------- */
+.receipt-header,
+.receipt-footer {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.receipt-header h2 {
+    font-size: 24px;
+    margin: 0 0 10px 0;
+    letter-spacing: 1px;
+}
+
+.receipt-header p,
+.receipt-footer p,
+.receipt-totals p {
+    margin: 4px 0;
+    font-size: 16px;
+}
+
+.receipt-items {
+    width: 100%;
+    margin-bottom: 25px;
+    border-collapse: collapse;
+}
+
+.receipt-items th {
+    border-bottom: 2px solid black;
+    padding-bottom: 8px;
+    font-size: 16px;
+}
+
+.receipt-items td {
+    padding: 6px 0;
+    font-size: 15px;
+}
+
 /* Estilos de Impresión */
 @media print {
     body {
@@ -773,39 +810,7 @@ body {
         visibility: visible !important;
     }
 
-    .receipt-header,
-    .receipt-footer {
-        text-align: center;
-        margin-bottom: 20px;
-    }
-
-    .receipt-header h2 {
-        font-size: 24px;
-        margin: 0 0 10px 0;
-        letter-spacing: 1px;
-    }
-
-    .receipt-header p,
-    .receipt-footer p,
-    .receipt-totals p {
-        margin: 4px 0;
-        font-size: 16px;
-    }
-
-    .receipt-items {
-        width: 100%;
-        margin-bottom: 25px;
-        border-collapse: collapse;
-    }
-
-    .receipt-items th {
-        border-bottom: 2px solid black;
-        padding-bottom: 8px;
-        font-size: 16px;
-    }
-
-    .receipt-items td {
-        padding: 6px 0;
-        font-size: 15px;
+    body.printing-receipt #receipt-template * {
+        visibility: visible !important;
     }
 }

@@ -35,12 +35,25 @@ function generateReceiptDOM(sale, cashReceivedInput) {
     }
 }
 
+let currentCompletedSale = null;
+
 /**
- * Orquesta la visualización y ocultación rápida del recibo para mandarlo a la impresora
- * y modifica temporalmente el título del documento para sugerir el nombre del archivo PDF al imprimir.
- * @param {Object} sale - El objeto de la venta confirmada
+ * Muestra el modal interceptor que pregunta si imprimir o descargar.
+ * @param {Object} sale - El objeto de la venta recién confirmada
  */
-function triggerPrintReceipt(sale) {
+function openReceiptOptions(sale) {
+    currentCompletedSale = sale;
+    domNodes.optionsOrderNo.textContent = sale.orderNumber || '00';
+    domNodes.printOptionsModal.classList.remove('hidden');
+}
+
+/**
+ * Ejecuta la antigua lógica nativa de impresión `window.print`
+ */
+function executePrint() {
+    if (!currentCompletedSale) return;
+    const sale = currentCompletedSale;
+
     // Generar un nombre de archivo sugerido: "ParriPOS - Orden 01 - 23-10-2023"
     const originalTitle = document.title;
     const dateStr = new Date(sale.date).toLocaleDateString('es-PA').replace(/\//g, '-');
@@ -59,4 +72,17 @@ function triggerPrintReceipt(sale) {
     setTimeout(() => {
         document.body.classList.remove('printing-receipt');
     }, 1000);
+
+    closeReceiptOptions();
 }
+
+function closeReceiptOptions() {
+    domNodes.printOptionsModal.classList.add('hidden');
+    currentCompletedSale = null;
+}
+
+// Inicializar event listeners específicos de esta ventana modal
+document.addEventListener('DOMContentLoaded', () => {
+    domNodes.btnActionPrint.addEventListener('click', executePrint);
+    domNodes.btnActionSkip.addEventListener('click', closeReceiptOptions);
+});

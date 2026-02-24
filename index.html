@@ -32,6 +32,8 @@
                     <h1>ParriPOS</h1>
                 </div>
                 <div class="header-actions">
+                    <button onclick="window.location.href='history.html'" class="btn-outline"
+                        style="border-color: var(--primary-color); color: var(--primary-color);">Ver Ventas</button>
                     <button id="btn-cerrar-caja" class="btn-outline">Cerrar Caja</button>
                 </div>
             </header>
@@ -96,6 +98,7 @@
         </div>
     </div>
 
+
     <!-- Modal Cerrar Caja -->
     <div id="close-register-modal" class="modal hidden">
         <div class="modal-content">
@@ -121,7 +124,6 @@
             </div>
             <div class="modal-footer no-print">
                 <button id="btn-close-summary" class="btn-outline">Cerrar</button>
-                <button id="btn-export-pdf" class="btn-primary">Imprimir / PDF</button>
                 <button id="btn-reset-register" class="btn-danger">Reiniciar Caja</button>
             </div>
         </div>
@@ -179,6 +181,21 @@
                 <button id="btn-cancel-reset" class="btn-outline">Cancelar</button>
                 <button id="btn-confirm-reset-strict" class="btn-danger">Sí, Reiniciar Caja</button>
             </div>
+        </div>
+    </div>
+
+    <!-- Modal Opciones de Recibo -->
+    <div id="print-options-modal" class="modal hidden">
+        <div class="modal-content" style="max-width: 400px; text-align: center;">
+            <h2 style="margin-bottom: 20px;">Opciones de Recibo</h2>
+            <div class="modal-body">
+                <p>¿Qué deseas hacer con el recibo de la orden <strong id="options-order-no"></strong>?</p>
+            </div>
+            <div class="modal-footer" style="justify-content: center; gap: 15px; margin-top: 25px;">
+                <button id="btn-action-print" class="btn-primary" style="flex:1;">🖨️ Imprimir Ticket</button>
+            </div>
+            <button id="btn-action-skip" class="btn-outline"
+                style="width: 100%; margin-top: 15px; border:none; color: var(--text-muted);">Saltar Recibo</button>
         </div>
     </div>
 
