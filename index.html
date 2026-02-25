@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ParriPOS</title>
+    <title>laparrilladeleste</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#f4f4f6">
@@ -20,20 +20,24 @@
         <main class="products-section">
             <header>
                 <div class="header-title">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                        stroke-linecap="round" stroke-linejoin="round" style="color: var(--acc-orange)">
-                        <path d="M5 21h14"></path>
-                        <path d="M6 17h12"></path>
-                        <path d="M7 13h10"></path>
-                        <path d="M12 2v11"></path>
-                        <path d="M8 5v8"></path>
-                        <path d="M16 5v8"></path>
-                    </svg>
-                    <h1>ParriPOS</h1>
+                    <img src="assets/Images/logo.jpg" alt="Logo ParriPOS"
+                        style="width: 40px; height: 40px; object-fit: cover; border-radius: 4px;">
+                    <h1>LAPARRILLADELESTE</h1>
                 </div>
                 <div class="header-actions">
                     <button onclick="window.location.href='history.html'" class="btn-outline"
-                        style="border-color: var(--primary-color); color: var(--primary-color);">Ver Ventas</button>
+                        style="border-color: var(--primary-color); color: var(--primary-color); display: flex; align-items: center; gap: 6px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                            <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2">
+                                <path
+                                    d="M8 5H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h5.697M18 14v4h4m-4-7V7a2 2 0 0 0-2-2h-2" />
+                                <path
+                                    d="M8 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2m6 13a4 4 0 1 0 8 0a4 4 0 1 0-8 0m-6-7h4m-4 4h3" />
+                            </g>
+                        </svg>
+                        Ver Ventas
+                    </button>
                     <button id="btn-cerrar-caja" class="btn-outline">Cerrar Caja</button>
                 </div>
             </header>
