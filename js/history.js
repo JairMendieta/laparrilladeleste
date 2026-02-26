@@ -53,3 +53,47 @@ function renderHistory() {
         });
     }
 }
+
+/**
+ * Función para reimprimir/descargar una factura del historial.
+ * @param {string} orderNumber - El número de orden de la venta a imprimir.
+ */
+window.downloadReceipt = function (orderNumber) {
+    const sales = JSON.parse(localStorage.getItem('parriPOS_sales') || '[]');
+    const sale = sales.find(s => s.orderNumber === orderNumber);
+
+    if (!sale) {
+        if (window.showToast) {
+            showToast('No se encontró la venta especificada.', 'error');
+        } else {
+            alert('No se encontró la venta especificada.');
+        }
+        return;
+    }
+
+    // Usar la función de receipt.js para llenar el DOM oculto
+    if (typeof generateReceiptDOM === 'function') {
+        const fakeCashReceivedInput = sale.method === 'Efectivo' ? sale.total : null;
+        generateReceiptDOM(sale, fakeCashReceivedInput);
+
+        // Imprimir usando la lógica nativa del navegador
+        const originalTitle = document.title;
+        const dateStr = new Date(sale.date).toLocaleDateString('es-PA').replace(/\//g, '-');
+        const orderStr = sale.orderNumber || '00';
+        document.title = `ParriPOS_Historial_${orderStr}_${dateStr}`;
+
+        document.body.classList.add('printing-receipt');
+
+        // Llamar a imprimir
+        window.print();
+
+        // Restaurar el título original después de imprimir
+        document.title = originalTitle;
+
+        setTimeout(() => {
+            document.body.classList.remove('printing-receipt');
+        }, 1000);
+    } else {
+        console.error('La función generateReceiptDOM no está disponible. Asegúrese de que receipt.js esté cargado.');
+    }
+};

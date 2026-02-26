@@ -2,6 +2,7 @@
 // Deben ser accesibles por los demás scripts cargados en el index.html
 const domNodes = {
     productsGrid: document.getElementById('products-grid'),
+    categoryFilters: document.getElementById('category-filters'),
     orderList: document.getElementById('order-list'),
     orderTotal: document.getElementById('order-total'),
     btnCheckout: document.getElementById('btn-checkout'),
@@ -43,6 +44,9 @@ const domNodes = {
 
 // ====== INICIALIZACIÓN ======
 function init() {
+    if (typeof renderCategoryFilters === 'function') {
+        renderCategoryFilters();
+    }
     renderProducts();
     setupEventListeners();
     updateOrderDisplay();

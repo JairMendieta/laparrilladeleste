@@ -1,4 +1,6 @@
 // ====== CONFIGuración de Productos ======
+let currentFilter = 'Todos';
+
 const PRODUCTS = [
     // PICADAS MIXTAS
     { id: 1, name: "Picada pequeña", description: "cerdo res y chorizo", price: 5.00, category: "Picadas Mixtas" },
@@ -32,14 +34,41 @@ const PRODUCTS = [
     { id: 21, name: "Piña con hierbabuena", description: "Artesanal", price: 3.25, category: "Bebidas" },
 ];
 
+// Muestra los botones de filtro de categorías
+function renderCategoryFilters() {
+    if (!domNodes.categoryFilters) return;
+
+    // Obtener categorías únicas
+    const categories = ['Todos', ...new Set(PRODUCTS.map(p => p.category))];
+
+    domNodes.categoryFilters.innerHTML = '';
+
+    categories.forEach(cat => {
+        const btn = document.createElement('button');
+        btn.className = `filter-btn ${cat === currentFilter ? 'active' : ''}`;
+        btn.textContent = cat;
+        btn.addEventListener('click', () => {
+            currentFilter = cat;
+            renderCategoryFilters(); // Actualizar clase active en botones
+            renderProducts(); // Filtrar y re-renderizar productos
+        });
+        domNodes.categoryFilters.appendChild(btn);
+    });
+}
+
 // Renders product buttons into the designated grid
 function renderProducts() {
     domNodes.productsGrid.innerHTML = '';
 
+    // Filtrar productos según la categoría seleccionada
+    const filteredProducts = currentFilter === 'Todos'
+        ? PRODUCTS
+        : PRODUCTS.filter(p => p.category === currentFilter);
+
     // Agrupar productos por categoría en el orden original
     let currentCategory = '';
 
-    PRODUCTS.forEach(product => {
+    filteredProducts.forEach(product => {
         // Crear título de categoría si es nueva
         if (product.category !== currentCategory) {
             currentCategory = product.category;

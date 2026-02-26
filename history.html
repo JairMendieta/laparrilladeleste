@@ -77,10 +77,51 @@
         </main>
     </div>
 
+    <!-- Plantilla oculta para el Ticket de Compra -->
+    <div id="receipt-template" class="receipt-hidden">
+        <div class="receipt-header">
+            <h2>L A &nbsp;&nbsp;P A R R I L L A<br>D E L &nbsp;&nbsp;E S T E</h2>
+            <p>RUC: 1234567-8-90<br>Panamá, Juan Díaz</p>
+            <p>================================</p>
+            <p>TICKET DE VENTA</p>
+            <p>Orden #: <strong id="receipt-order-no" style="font-size: 16px;"></strong></p>
+            <p id="receipt-date"></p>
+            <p>================================</p>
+        </div>
+
+        <table class="receipt-items">
+            <thead>
+                <tr>
+                    <th style="text-align:left">Cant</th>
+                    <th style="text-align:left">Desc</th>
+                    <th style="text-align:right">Total</th>
+                </tr>
+            </thead>
+            <tbody id="receipt-items-list">
+                <!-- Se llena con JS -->
+            </tbody>
+        </table>
+
+        <div class="receipt-totals">
+            <p>================================</p>
+            <p><strong>TOTAL: <span id="receipt-total-amount"></span></strong></p>
+            <p>Método: <span id="receipt-method"></span></p>
+            <p>Recibido: <span id="receipt-cash"></span></p>
+            <p>Cambio: <span id="receipt-change"></span></p>
+            <p>================================</p>
+        </div>
+
+        <div class="receipt-footer">
+            <p>¡Gracias por su compra!</p>
+            <p>Vuelva pronto</p>
+        </div>
+    </div>
+
     <!-- Contenedor para notificaciones Toast -->
     <div id="toast-container" class="toast-container"></div>
 
     <script src="js/ui.js"></script>
+    <script src="js/receipt.js"></script>
     <script src="js/history.js"></script>
 </body>
 
